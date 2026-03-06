@@ -1,0 +1,32 @@
+CPU Optimizer Pro - Installation Information
+
+Welcome to CPU Optimizer Pro!
+
+This software will help you:
+- Reduce CPU usage by up to 40%
+- Improve system performance during heavy workloads
+- Optimize gaming, video editing, and multitasking
+- Monitor system performance in real-time
+
+SYSTEM REQUIREMENTS:
+- Windows 10 or Windows 11 (64-bit)
+- 4 GB RAM (8 GB recommended)
+- 100 MB free disk space
+- Administrator privileges (recommended)
+
+IMPORTANT NOTES:
+- Run as Administrator for best results
+- The application is safe and does not modify critical system files
+- You can uninstall at any time without any side effects
+- No data is collected or sent to external servers
+
+GETTING STARTED:
+1. Complete the installation
+2. Launch CPU Optimizer Pro
+3. Select your optimization mode (Basic, Advanced, or Pro)
+4. Click "START OPTIMIZATION"
+5. Watch your CPU usage drop!
+
+For detailed instructions, see USER_GUIDE.md in the installation folder.
+
+Thank you for choosing CPU Optimizer Pro!
