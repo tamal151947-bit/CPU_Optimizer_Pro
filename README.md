@@ -559,6 +559,7 @@ Most issues are resolved by:
 ## ⭐ Credits
 
 **Developer**: Tamal Kar 
+
 **UI Design**: Modern dark theme inspired by Windows 11  
 **Libraries**: psutil, matplotlib, tkinter  
 **Icons**: Built-in emoji support
