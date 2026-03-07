@@ -558,7 +558,7 @@ Most issues are resolved by:
 
 ## ⭐ Credits
 
-**Development Team**: CPU Optimizer Pro Team  
+**Developer**: Tamal Kar 
 **UI Design**: Modern dark theme inspired by Windows 11  
 **Libraries**: psutil, matplotlib, tkinter  
 **Icons**: Built-in emoji support
