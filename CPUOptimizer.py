@@ -520,6 +520,10 @@ class CPUOptimizerPro:
                     self.cpu_after_samples.pop(0)
                 self.cpu_after = sum(self.cpu_after_samples) / max(1, len(self.cpu_after_samples))
                 self.cpu_saved = max(0, self.cpu_before - self.cpu_after)
+            else:
+                self.cpu_before = cpu_percent
+                self.cpu_after = 0
+                self.cpu_saved = 0
                 
             self.cpu_before_label.config(text=f"{self.cpu_before:.1f}%")
             self.cpu_after_label.config(text=f"{self.cpu_after:.1f}%")
@@ -573,14 +577,15 @@ class CPUOptimizerPro:
             if not self.is_admin:
                 messagebox.showwarning(
                     "Administrator Required",
-                    "Please run CPU Optimizer Pro as Administrator to apply real optimizations."
+                    "CPU Optimizer Pro will start in limited mode. Run as Administrator to apply real optimizations."
                 )
-                return
 
             # Start optimization
             self.baseline_samples.clear()
-            for _ in range(3):
-                self.baseline_samples.append(psutil.cpu_percent(interval=0.4))
+            if self.cpu_history:
+                self.baseline_samples.extend(self.cpu_history[-self.cpu_avg_window:])
+            if not self.baseline_samples:
+                self.baseline_samples.append(psutil.cpu_percent(interval=None))
             self.cpu_before = sum(self.baseline_samples) / max(1, len(self.baseline_samples))
             self.cpu_after_samples.clear()
             self.is_optimizing = True
@@ -589,10 +594,10 @@ class CPUOptimizerPro:
                 bg="#ff4444",
                 activebackground="#cc0000"
             )
-            self.status_label.config(
-                text=f"Optimizing ({self.optimization_mode.get()} Mode)",
-                fg="#00ff88"
-            )
+            status_text = f"Optimizing ({self.optimization_mode.get()} Mode)"
+            if not self.is_admin:
+                status_text += " - Limited Mode"
+            self.status_label.config(text=status_text, fg="#00ff88")
             
             if self.deep_optimization_enabled:
                 messagebox.showinfo(
@@ -604,6 +609,9 @@ class CPUOptimizerPro:
         else:
             # Stop optimization
             self.is_optimizing = False
+            self.cpu_after_samples.clear()
+            self.cpu_after = 0
+            self.cpu_saved = 0
             self.restore_all_optimizations()
             self.optimized_processes.clear()
             self.optimize_btn.config(
